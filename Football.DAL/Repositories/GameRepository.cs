@@ -36,12 +36,12 @@ namespace Football.DAL.Repositories
 
         public Game Get(int id)
         {
-            return db.Games.Find(id);
+            return db.Games.Include(g => g.FirstTeam).Include(g => g.SecondTeam).Include(g => g.Stadium).FirstOrDefault((g) => g.Id == id);
         }
 
         public IEnumerable<Game> GetAll()
         {
-            return db.Games;
+            return db.Games.Include(g => g.FirstTeam).Include(g => g.SecondTeam).Include(g => g.Stadium);
         }
 
         public void Update(Game item)

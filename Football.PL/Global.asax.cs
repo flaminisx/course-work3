@@ -25,6 +25,7 @@ namespace Football.PL
             NinjectModule staduiumModule = new StaduimModule();
             NinjectModule serviceModule = new ServiceModule("DefaultConnection");
             var kernel = new StandardKernel(teamModule, gameModule, playerModule, staduiumModule, serviceModule);
+            kernel.Unbind<ModelValidatorProvider>();
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
         }
     }

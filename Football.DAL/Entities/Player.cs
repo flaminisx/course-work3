@@ -12,6 +12,6 @@ namespace Football.DAL.Entities
         public string Name { get; set; }
         public string Surname { get; set; }
         public int TeamId { get; set; }
-        public Team Team { get; set; }
+        //public Team Team { get; set; }
     }
 }

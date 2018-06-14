@@ -19,7 +19,7 @@ namespace Football.BLL.Services
 
         public void Create(StadiumDTO stadiumDto)
         {
-            if (stadiumDto.Name.Length < 1)
+            if (stadiumDto.Name == null || stadiumDto.Name.Length < 1)
                 throw new ValidationException("Имя стадиона должно состоять минимум из одного символа", "Name");
             var stadium = new Stadium { Name = stadiumDto.Name };
             Database.Stadiums.Create(stadium);
@@ -45,6 +45,14 @@ namespace Football.BLL.Services
         {
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Stadium, StadiumDTO>()).CreateMapper();
             return mapper.Map<IEnumerable<Stadium>, List<StadiumDTO>>(Database.Stadiums.GetAll());
+        }
+
+        public void DeleteStadium(int? id)
+        {
+            if (id == null)
+                throw new ValidationException("Нет Id стадиона", "id");
+            Database.Stadiums.Delete(id.Value);
+            Database.Save();
         }
     }
 }

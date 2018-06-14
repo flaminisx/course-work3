@@ -14,17 +14,32 @@ namespace Football.PL.Controllers
     public class TeamController : Controller
     {
         ITeamService teamService;
+        IPlayerService playerService;
 
-        public TeamController(ITeamService service)
+        public TeamController(ITeamService teams, IPlayerService players)
         {
-            teamService = service;
+            teamService = teams;
+            playerService = players;
+
         }
         // GET: Team
-        public ActionResult Index()
+        public ActionResult Index(string sortBy)
         {
             IEnumerable<TeamDTO> teamDTOs = teamService.GetTeams();
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<TeamDTO, TeamViewModel>()).CreateMapper();
-            var teams = mapper.Map<IEnumerable<TeamDTO>, List<TeamViewModel>>(teamDTOs);
+            var teams = mapper.Map<IEnumerable<TeamDTO>, List<TeamViewModel>>(teamDTOs).AsQueryable();
+            ViewBag.NameSort = sortBy == "Name" ? "Name desc" : "Name";
+            switch (sortBy)
+            {
+                case "Name desc":
+                    teams = teams.OrderByDescending(s => s.Name);
+                    break;
+                case "Name":
+                    teams = teams.OrderBy(s => s.Name);
+                    break;
+                default:
+                    break;
+            }
             return View(teams);
         }
 
@@ -56,6 +71,24 @@ namespace Football.PL.Controllers
                 ModelState.AddModelError(ex.Property, ex.Message);
             }
             return View(team);
+        }
+
+        public ActionResult Show(int? id)
+        {
+            try
+            {
+                var team = teamService.GetTeam(id);
+                ViewBag.Players = playerService.GetPlayersByTeam(id);
+                return View(new TeamViewModel
+                {
+                    Id = team.Id,
+                    Name = team.Name
+                });
+            }
+            catch (ValidationException ex)
+            {
+                return Content(ex.Message);
+            }
         }
 
         public ActionResult Edit(int? id)
@@ -126,6 +159,7 @@ namespace Football.PL.Controllers
         protected override void Dispose(bool disposing)
         {
             teamService.Dispose();
+            playerService.Dispose();
             base.Dispose(disposing);
         }
     }

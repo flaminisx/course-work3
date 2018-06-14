@@ -20,7 +20,7 @@ namespace Football.BLL.Services
 
         public void Create(TeamDTO teamDto)
         {
-            if (teamDto.Name.Length < 1)
+            if (teamDto.Name == null || teamDto.Name.Length < 1)
                 throw new ValidationException("Имя команды должно состоять минимум из одного символа", "Name");
             Team team = new Team { Name = teamDto.Name };
             Database.Teams.Create(team);
@@ -58,7 +58,7 @@ namespace Football.BLL.Services
 
         public void UpdateTeam(TeamDTO teamDto)
         {
-            if (teamDto.Name.Length < 1)
+            if (teamDto.Name == null || teamDto.Name.Length < 1)
                 throw new ValidationException("Имя команды должно состоять минимум из одного символа", "Name");
             Team team = new Team { Id = teamDto.Id, Name = teamDto.Name };
             Database.Teams.Update(team);

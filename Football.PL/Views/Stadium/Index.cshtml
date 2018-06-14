@@ -1,9 +1,10 @@
-﻿@model IEnumerable<Football.PL.Models.TeamViewModel>
+﻿@model IEnumerable<Football.PL.Models.StadiumViewModel>
 @{
-    ViewBag.Title = "Teams";
+    ViewBag.Title = "Стадионы";
 }
 
-<h2>Список команд</h2>
+<h2>Список стадионов</h2>
+
 @Html.ActionLink("Добавить", "Create", null, new { @class = "btn btn-primary" })
 <br />
 <br />
@@ -22,8 +23,6 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Больше", "Show", new { id = item.Id }) |
                 @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
             </td>
         </tr>

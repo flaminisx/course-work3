@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Football.PL.Models.GameViewModel>
+@{
+    ViewBag.Title = "Игры";
+}
+
+<h2>Список игр</h2>
+@Html.ActionLink("Добавить", "Create", null, new { @class = "btn btn-primary" })
+<br />
+<br />
+
+<table class="table">
+
+    <tr>
+        <th>
+            @Html.ActionLink("Команда 1", "Index", new { sortBy = ViewBag.FirstTeamNameSort })
+        </th>
+        <th>
+            @Html.ActionLink("Счет", "Index", new { sortBy = ViewBag.ResultSort })
+        </th>
+        <th>
+            @Html.ActionLink("Команда 2", "Index", new { sortBy = ViewBag.SecondTeamNameSort })
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstTeamName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstTeamResult)
+                -
+                @Html.DisplayFor(modelItem => item.SecondTeamResult)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecondTeamName)
+            </td>
+            <td>
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>

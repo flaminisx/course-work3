@@ -8,6 +8,7 @@ namespace Football.BLL.Interfaces
         void Create(StadiumDTO stadiumDto);
         StadiumDTO GetStadium(int? id);
         IEnumerable<StadiumDTO> GetStadiums();
+        void DeleteStadium(int? id);
         void Dispose();
     }
 }

@@ -7,15 +7,20 @@
 @Html.ActionLink("Добавить", "Create", null, new { @class = "btn btn-primary" })
 <br />
 <br />
+@using (Html.BeginForm("Index", "Player", FormMethod.Get, new { @class = "form form-vertical searchform" }))
+{
 
+     <span>Пошук</span> @Html.TextBox("searching", ViewBag.Search as string, new { @class = "form-control" })
+    <input type="submit" value="Шукати" class="btn btn-primary"/><br />
+}
 <table class="table">
 
     <tr>
         <th>
-            @Html.ActionLink("Прізвище", "Index", new { sortBy = ViewBag.SurnameSort })
+            @Html.ActionLink("Имя", "Index", new { sortBy = ViewBag.NameSort })
         </th>
         <th>
-            @Html.ActionLink("Ім'я", "Index", new { sortBy = ViewBag.NameSort })
+            @Html.ActionLink("Фамилия", "Index", new { sortBy = ViewBag.SurnameSort})
         </th>
         <th></th>
     </tr>
@@ -29,9 +34,8 @@
                 @Html.DisplayFor(modelItem => item.Surname)
             </td>
             <td>
-                @Html.ActionLink("Редагувати", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Деталі", "Show", new { id = item.Id }) |
-                @Html.ActionLink("Видалити", "Delete", new { id = item.Id })
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
             </td>
         </tr>
     }

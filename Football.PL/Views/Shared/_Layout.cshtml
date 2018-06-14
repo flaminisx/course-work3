@@ -1,29 +1,30 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title – приложение ASP.NET</title>
-    @Styles.Render("~/Content/css")
+
+    @Styles.Render("~/Content/bootstrap.min.css")
     @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/css")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
                 @Html.ActionLink("Футбольный менеджер", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Команды", "Index", "Team")</li>
-                    <li>@Html.ActionLink("Игроки", "Index", "Player")</li>
-                    <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">@Html.ActionLink("Команды", "Index", "Team", null, new { @class = "nav-link"})</li>
+                    <li class="nav-item">@Html.ActionLink("Игроки", "Index", "Player", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Стадионы", "Index", "Stadium", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Игры", "Index", "Game", null, new { @class = "nav-link" })</li>
                 </ul>
             </div>
         </div>
