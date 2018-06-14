@@ -9,6 +9,8 @@ namespace Football.BLL.Interfaces
         void Create(TeamDTO teamDto);
         TeamDTO GetTeam(int? id);
         IEnumerable<TeamDTO> GetTeams();
+        void DeleteTeam(int? id);
+        void UpdateTeam(TeamDTO teamDto);
         void Dispose();
     }
 }

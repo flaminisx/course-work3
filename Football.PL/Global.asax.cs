@@ -20,8 +20,11 @@ namespace Football.PL
 
             // внедрение зависимостей
             NinjectModule teamModule = new TeamModule();
+            NinjectModule gameModule = new GameModule();
+            NinjectModule playerModule = new PlayerModule();
+            NinjectModule staduiumModule = new StaduimModule();
             NinjectModule serviceModule = new ServiceModule("DefaultConnection");
-            var kernel = new StandardKernel(teamModule, serviceModule);
+            var kernel = new StandardKernel(teamModule, gameModule, playerModule, staduiumModule, serviceModule);
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
         }
     }

@@ -4,11 +4,11 @@ using Football.BLL.Interfaces;
 
 namespace Football.PL.Util
 {
-    public class TeamModule : NinjectModule
+    public class PlayerModule : NinjectModule
     {
         public override void Load()
         {
-            Bind<ITeamService>().To<TeamService>();
+            Bind<IPlayerService>().To<PlayerService>();
         }
     }
 }

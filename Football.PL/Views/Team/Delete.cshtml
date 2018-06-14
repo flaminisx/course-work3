@@ -1,0 +1,29 @@
+﻿@model Football.PL.Models.TeamViewModel
+@{
+    ViewBag.Title = "Delete";
+}
+<h2>Удаление </h2>
+
+<h3>Вы уверены что хотите удалить эту команду?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Команда
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Видалити" class="btn btn-default" />
+        </div>
+    }
+</div>

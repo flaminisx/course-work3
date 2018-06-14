@@ -8,7 +8,7 @@ using AutoMapper;
 
 namespace Football.BLL.Services
 {
-    class StadiumService : IStadiumService
+    public class StadiumService : IStadiumService
     {
         IUnitOfWork Database { get; set; }
 

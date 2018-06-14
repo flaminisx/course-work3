@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Football.PL.Models.PlayerViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Список игроков</h2>
+@Html.ActionLink("Добавить", "Create", null, new { @class = "btn btn-primary" })
+<br />
+<br />
+
+<table class="table">
+
+    <tr>
+        <th>
+            @Html.ActionLink("Прізвище", "Index", new { sortBy = ViewBag.SurnameSort })
+        </th>
+        <th>
+            @Html.ActionLink("Ім'я", "Index", new { sortBy = ViewBag.NameSort })
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.ActionLink("Редагувати", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Деталі", "Show", new { id = item.Id }) |
+                @Html.ActionLink("Видалити", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>

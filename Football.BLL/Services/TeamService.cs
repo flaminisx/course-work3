@@ -47,5 +47,22 @@ namespace Football.BLL.Services
         {
             Database.Dispose();
         }
+
+        public void DeleteTeam(int? id)
+        {
+            if (id == null)
+                throw new ValidationException("Нет Id команды", "id");
+            Database.Teams.Delete(id.Value);
+            Database.Save();
+        }
+
+        public void UpdateTeam(TeamDTO teamDto)
+        {
+            if (teamDto.Name.Length < 1)
+                throw new ValidationException("Имя команды должно состоять минимум из одного символа", "Name");
+            Team team = new Team { Id = teamDto.Id, Name = teamDto.Name };
+            Database.Teams.Update(team);
+            Database.Save();
+        }
     }
 }
